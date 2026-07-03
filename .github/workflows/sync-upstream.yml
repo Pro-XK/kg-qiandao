@@ -19,6 +19,7 @@ jobs:
           git remote add upstream https://github.com/qfmc7040/KGM_Auto-check-in.git
           git fetch upstream
           git checkout main
+          git remote set-url origin https://x-access-token:${{ secrets.PAT }}@github.com/fangjingjun/kg-qiandao.git
           git config user.name github-actions[bot]
           git config user.email github-actions[bot]@users.noreply.github.com
           git merge upstream/main --no-edit --allow-unrelated-histories
