@@ -61,13 +61,14 @@ API源代码来自 [MakcRe/KuGouMusicApi](https://github.com/MakcRe/KuGouMusicAp
 ## Secret 位置
 
 1. 步骤一
-   ![步骤一](./imgs/步骤1.jpg)
+   ![步骤一](./imgs/步骤一.jpg)
 1. 步骤二
-   ![步骤二](./imgs/步骤2.jpg)
+   
+   ![步骤二](./imgs/步骤二.jpg)
 1. 步骤三
-   ![步骤三](./imgs/步骤3.jpg)
+   ![步骤三](./imgs/步骤三.jpg)
 1. 步骤四
-   ![步骤四](./imgs/步骤4.jpg)
+   ![步骤四](./imgs/步骤四.jpg)
 
 ## 致谢
 
