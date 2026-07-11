@@ -23,9 +23,14 @@ GitHub Actions 实现 `KGM概念VIP` 自动签到，每天领取总计 `两天KG
 >
 > 若登录后听歌领取失败，请到APP 活动中心->天天签到领VIP(这个活动新用户好像没有) 查看当日是否已经领取VIP。
 
-1. Fork 本仓库
+### 部署教程
+<details>
+<summary>展开</summary>
 
-1. 创建添加令牌
+
+1. __Fork 本仓库__
+
+1. __创建添加令牌__
    - **创建令牌**  
      复制下方官网链接，在浏览器中打开
 
@@ -42,34 +47,41 @@ GitHub Actions 实现 `KGM概念VIP` 自动签到，每天领取总计 `两天KG
       **Repository permissions (仓库权限)**：`Metadata` 保持只读，`Secrets` 设置为读写
       ![精细化个人访问令牌权限](imgs/精细化个人访问令牌权限.png)
    - 滑动到底部，点击绿色的 Generate token 保存按钮
-   - 复制生成的字符串，回到本仓库添加到`Secret`，变量名 `PAT`，value 为复制的令牌
+   - 复制生成的字符串，回到本仓库添加到[Secret](#secret-位置)
+   - 变量名 `PAT`，value 为复制的令牌
 
-1. 登录(两种登录方式任选其一)
+1. __登录__(两种登录方式任选其一)
 
    3.1 二维码(推荐)
 
-   运行 Actions `qrcodeLogin` 并进入(若不显示,可以刷新页面)，点击run -> 展开二维码登录, 根据提示操作即可。
+   运行 Actions `qrcodeLogin` 并进入(若不显示,可以刷新页面)，点击`run` -> 展开二维码登录, 根据提示操作即可。
 
    3.2 手机号
 
    添加手机号到 Secret `PHONE`，运行 Actions `sent` 获取验证码，把验证码添加到 Secret `CODE`；运行Actions `phoneLogin` ，成功即可
 
-1. 启用 Actions `main` , 每天北京时间 01:15 自动签到（可在`main.yml`中设置cron）。启用 Actions `Repository Keepalive` 以保证签到可以长期执行。
+![登录](./imgs/登录.jpg)
+
+1. 启用 Actions `main` , 每天北京时间 01:15 自动签到（可在`main.yml`中设置`cron`）。启用 Actions `Repository Keepalive` 以保证签到可以长期执行。
+
+![启用](./imgs/启用.jpg)
 
 API源代码来自 [MakcRe/KuGouMusicApi](https://github.com/MakcRe/KuGouMusicApi) ~~图省事直接搬来~~
 
 ## Secret 位置
 
-1. 步骤一
+1. `步骤一`
+
    ![步骤一](./imgs/步骤一.jpg)
-1. 步骤二
+1. `步骤二`
    
    ![步骤二](./imgs/步骤二.jpg)
-1. 步骤三
+1. `步骤三`
    ![步骤三](./imgs/步骤三.jpg)
-1. 步骤四
+1. `步骤四`
    ![步骤四](./imgs/步骤四.jpg)
-
+</details>
+   
 ## 致谢
 
 - 感谢 [@MakcRe](https://github.com/MakcRe) 提供 API 源代码
