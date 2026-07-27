@@ -10,7 +10,7 @@ async function main() {
   const refreshUserinfo = []
   let needRefresh = false
   if (!USERINFO) {
-    throw new Error("未配置")
+    throw new Error("未配置Secret")
   }
   const userinfo = JSON.parse(USERINFO)
 
