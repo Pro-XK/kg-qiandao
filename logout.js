@@ -16,7 +16,7 @@ async function logout() {
     // 列出所有账号供选择
     printYellow("当前已登录账号：");
     userinfo.forEach((user, index) => {
-      printBlue(`${index + 1}. userid: ${maskIdentifier(String(user.userid))}`);
+      printBlue(`${index + 1}. userid: ${user.userid}`);
     });
     printYellow("请在环境变量 USERID 中指定要退出的 userid 后重试");
     return;
