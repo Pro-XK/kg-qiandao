@@ -5,7 +5,7 @@ on:
     inputs:
       userid:
         description: '要退出的 userid'
-        required: true
+        required: false
 
 permissions:
   contents: read
