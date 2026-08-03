@@ -10,7 +10,6 @@ async function login() {
   const USERINFO = process.env.USERINFO
   const APPEND_USER = process.env.APPEND_USER
   const userinfo = (USERINFO && APPEND_USER == "是") ? JSON.parse(USERINFO) : []
-  const USERID = process.env.USERID
 
   // 不使用二维码登录并且没有手机号或验证码
   if (!phone || !code) {
@@ -22,7 +21,7 @@ async function login() {
 
   try {
     // 手机号登录请求
-    const result = await send(`/login/cellphone?mobile=${phone}&code=${code}${USERID ? '&userid=' + USERID : ''}`, "GET", {})
+    const result = await send(`/login/cellphone?mobile=${phone}&code=${code}`, "GET", {})
     if (result.status === 1) {
 
       let userAlreadyExist = false
@@ -73,13 +72,6 @@ async function login() {
         }
       }
     } else if (result.error_code === 34175) {
-      const infoList = result?.data?.info_list
-      if (infoList && Array.isArray(infoList)) {
-        printYellow("当前手机号下有多个账号，请设置 USERID 环境变量选择登录账号：")
-        for (const item of infoList) {
-          printBlue(`${item.nickname ? item.nickname + ' - ' : ''}userid: ${item.userid}`)
-        }
-      }
       throw new Error("暂不支持多账号绑定手机登录")
     } else {
       printRed("响应内容")

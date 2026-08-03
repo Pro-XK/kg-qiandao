@@ -1,35 +1,29 @@
-name: 手机号登录
+name: phoneLogin
 on:
   workflow_dispatch:
     inputs:
-      phone:
-        description: '手机号'
-        required: true
-      code:
-        description: '验证码'
-        required: true
-      userid:
-        description: '指定 userid（多账号时选择，可选）'
-        required: false
       append_user:
-        description: '追加账号'
+        description: "是否追加新账号？（不删除已存在账号信息）"
         required: true
+        default: "否"
         type: choice
         options:
-          - '是'
-          - '否'
+          - 是
+          - 否
       print_userinfo:
-        description: '是否在日志中输出登录信息'
+        description: "自动写入失败时是否在日志输出 USERINFO？含登录token，默认否"
         required: true
+        default: "否"
         type: choice
         options:
-          - '是'
-          - '否'
+          - 否
+          - 是
 permissions:
   contents: read
 jobs:
   run:
     runs-on: ubuntu-latest
+    timeout-minutes: 2
     steps:
       - name: 检出仓库
         uses: actions/checkout@v6
@@ -58,16 +52,15 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
       - name: 安装依赖
-        run: cd api && npm ci --no-fund --no-audit
+        run: npm run install
         if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
       - name: 手机号登录
         run: npm run phoneLogin
         env:
-          PHONE: ${{ github.event.inputs.phone }}
-          CODE: ${{ github.event.inputs.code }}
-          USERID: ${{ github.event.inputs.userid }}
-          APPEND_USER: ${{ github.event.inputs.append_user }}
-          USERINFO: ${{ secrets.USERINFO }}
+          PHONE: ${{ secrets.PHONE }}
+          CODE: ${{ secrets.CODE }}
           PAT: ${{ secrets.PAT }}
-          PRINT_USERINFO: ${{ github.event.inputs.print_userinfo }}
           GITHUB_REPOSITORY: ${{ github.repository }}
+          USERINFO: ${{ secrets.USERINFO }}
+          APPEND_USER: ${{ github.event.inputs.append_user }}
+          ALLOW_PRINT_USERINFO: ${{ github.event.inputs.print_userinfo }}
