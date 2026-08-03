@@ -10,6 +10,7 @@ async function login() {
   const USERINFO = process.env.USERINFO
   const APPEND_USER = process.env.APPEND_USER
   const userinfo = (USERINFO && APPEND_USER == "是") ? JSON.parse(USERINFO) : []
+  const USERID = process.env.USERID
 
   // 不使用二维码登录并且没有手机号或验证码
   if (!phone || !code) {
